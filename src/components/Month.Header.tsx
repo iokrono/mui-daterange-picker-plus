@@ -7,7 +7,7 @@ import {
   Select,
   useTheme,
   Typography,
-  Unstable_Grid2 as Grid2,
+  Grid,
 } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material";
 import {
@@ -128,7 +128,7 @@ export const MonthHeader = ({
 
   return (
     <>
-      <Grid2 xs="auto" ml="10px" container>
+      <Grid xs="auto" ml="10px" container>
         <IconButton
           disableRipple
           size="small"
@@ -138,12 +138,12 @@ export const MonthHeader = ({
           onClick={onClickPrevious}
           sx={{
             borderRadius: "8px",
-            color: theme.palette.grey[600],
+            color: theme.palette.primary.main,
             ".MuiSvgIcon-root": {
-              color: theme.palette.grey[600],
+              color: theme.palette.primary.main,
             },
             "&:hover": {
-              backgroundColor: theme.palette.grey[100],
+              backgroundColor: theme.palette.background.default,
             },
 
             "&.Mui-disabled": {
@@ -151,9 +151,8 @@ export const MonthHeader = ({
             },
 
             "&.Mui-upon-secondary-bg": {
-              // backgroundColor: grey[200],
               "&:hover": {
-                backgroundColor: theme.palette.grey[200],
+                backgroundColor: theme.palette.background.paper,
               },
             },
           }}
@@ -161,13 +160,13 @@ export const MonthHeader = ({
           <KeyboardArrowLeft
             fontSize="small"
             sx={{
-              fill: prevDisabled ? `${theme.palette.grey[400]}` : "secondary",
+              fill: prevDisabled ? `${theme.palette.primary.light}` : "secondary",
             }}
           />
         </IconButton>
-      </Grid2>
+      </Grid>
 
-      <Grid2 xsOffset={"auto"} xs={"auto"} container>
+      <Grid xs={"auto"} container>
         <FormControl>
           <Select
             SelectDisplayProps={{
@@ -182,7 +181,7 @@ export const MonthHeader = ({
               <KeyboardArrowDown
                 fontSize="small"
                 sx={{
-                  fill: theme.palette.grey[400],
+                  fill: theme.palette.primary.main,
                 }}
                 {...props}
               />
@@ -195,7 +194,6 @@ export const MonthHeader = ({
                     md: "120px",
                   },
                   height: "30px",
-                  backgroundColor: "#fff",
                 },
               },
             }}
@@ -229,9 +227,9 @@ export const MonthHeader = ({
             })}
           </Select>
         </FormControl>
-      </Grid2>
+      </Grid>
 
-      <Grid2 xsOffset={"auto"} xs="auto" container>
+      <Grid xs="auto" container>
         <FormControl>
           <Select
             variant="outlined"
@@ -246,7 +244,7 @@ export const MonthHeader = ({
               <KeyboardArrowDown
                 fontSize="small"
                 sx={{
-                  fill: theme.palette.grey[400],
+                  fill: theme.palette.primary.main,
                 }}
                 {...props}
               />
@@ -255,7 +253,6 @@ export const MonthHeader = ({
               root: {
                 sx: {
                   height: "30px",
-                  backgroundColor: "#fff",
                 },
               },
             }}
@@ -298,9 +295,9 @@ export const MonthHeader = ({
             })}
           </Select>
         </FormControl>
-      </Grid2>
+      </Grid>
 
-      <Grid2 mr="10px" xsOffset={"auto"} xs="auto" container>
+      <Grid mr="10px" xs="auto" container>
         <IconButton
           disableRipple
           size="small"
@@ -310,12 +307,12 @@ export const MonthHeader = ({
           onClick={onClickNext}
           sx={{
             borderRadius: "8px",
-            color: theme.palette.grey[600],
+            color: theme.palette.primary.main,
             ".MuiSvgIcon-root": {
-              color: theme.palette.grey[600],
+              color: theme.palette.primary.main,
             },
             "&:hover": {
-              backgroundColor: theme.palette.grey[100],
+              backgroundColor: theme.palette.primary.light,
             },
 
             "&.Mui-disabled": {
@@ -324,7 +321,7 @@ export const MonthHeader = ({
 
             "&.Mui-upon-secondary-bg": {
               "&:hover": {
-                backgroundColor: theme.palette.grey[200],
+                backgroundColor: theme.palette.background.default,
               },
             },
           }}
@@ -332,11 +329,11 @@ export const MonthHeader = ({
           <KeyboardArrowRight
             fontSize="small"
             sx={{
-              fill: nextDisabled ? `${theme.palette.grey[400]}` : "secondary",
+              fill: nextDisabled ? `${theme.palette.primary.light}` : "secondary",
             }}
           />
         </IconButton>
-      </Grid2>
+      </Grid>
     </>
   );
 };

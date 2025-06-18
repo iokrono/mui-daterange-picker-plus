@@ -1,6 +1,6 @@
 import { isSameMonth } from "date-fns";
 import type { Locale } from "date-fns";
-import { Unstable_Grid2 as Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Month } from "./Month";
 import { MARKERS } from "../Constants/markers";
 import { NavigationAction } from "../types/utils";
@@ -41,7 +41,7 @@ export const SingleCalender = ({
   const canNavigateForward = !isSameMonth(firstMonth, commonProps.maxDate);
 
   return (
-    <Grid2
+    <Grid
       xs={12}
       container
       direction={{
@@ -50,7 +50,7 @@ export const SingleCalender = ({
       }}
       justifyContent="center"
     >
-      <Grid2 xs="auto" container direction={"column"}>
+      <Grid xs="auto" container direction={"column"}>
         <Month
           {...commonProps}
           currentDate={firstMonth}
@@ -61,7 +61,7 @@ export const SingleCalender = ({
           locale={locale}
           hideOutsideMonthDays={hideOutsideMonthDays}
         />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };

@@ -1,4 +1,4 @@
-import { styled, Button, Unstable_Grid2 as Grid2 } from "@mui/material";
+import { styled, Button, Grid } from "@mui/material";
 import type { ModalCustomProps } from "../types/utils";
 
 const CancelButtonStyled = styled(Button)(({ theme }) => ({
@@ -9,10 +9,6 @@ const CancelButtonStyled = styled(Button)(({ theme }) => ({
   marginRight: "8px",
   padding: "0 16px",
   height: "36px",
-  color: theme.palette.grey[600],
-  "&:hover": {
-    backgroundColor: theme.palette.grey[100],
-  },
 }));
 
 const ApplyButtonStyled = styled(Button)({
@@ -34,34 +30,39 @@ type ActionsProps = Omit<ModalCustomProps, "onSubmit"> & {
 
 export const Actions = ({
   onCloseCallback,
+  hideCloseButton,
   onSubmit,
+  hideSubmitButton,
   labels,
 }: ActionsProps) => {
   return (
     <>
-      <Grid2>
-        <CancelButtonStyled
-          disableRipple
-          disableElevation
-          variant="text"
-          onClick={onCloseCallback}
-        >
-          {labels?.cancel || "Cancel"}
-        </CancelButtonStyled>
-      </Grid2>
-
-      <Grid2>
-        <ApplyButtonStyled
-          disableRipple
-          disableElevation
-          type="submit"
-          variant="contained"
-          color="primary"
-          onClick={onSubmit}
-        >
-          {labels?.apply || "Apply"}
-        </ApplyButtonStyled>
-      </Grid2>
+      { !hideCloseButton && 
+        <Grid>
+          <CancelButtonStyled
+            disableRipple
+            disableElevation
+            variant="text"
+            onClick={onCloseCallback}
+          >
+            {labels?.cancel || "Cancel"}
+          </CancelButtonStyled>
+        </Grid> 
+      }
+      { !hideSubmitButton &&
+          <Grid>
+            <ApplyButtonStyled
+              disableRipple
+              disableElevation
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={onSubmit}
+            >
+              {labels?.apply || "Apply"}
+            </ApplyButtonStyled>
+          </Grid>
+      }
     </>
   );
 };

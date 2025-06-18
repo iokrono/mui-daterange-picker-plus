@@ -9,6 +9,8 @@ import {
   startOfYear,
   endOfYear,
   addYears,
+  startOfDay,
+  endOfDay,
 } from "date-fns";
 import type { Locale } from "date-fns";
 import type { DefinedRange } from "./types/utils";
@@ -25,13 +27,13 @@ export const getDefaultRanges = (
 ): DefinedRange[] => [
   {
     label: "Today",
-    startDate: date,
-    endDate: date,
+    startDate: startOfDay(date),
+    endDate: endOfDay(date),
   },
   {
     label: "Yesterday",
-    startDate: addDays(date, -1),
-    endDate: addDays(date, -1),
+    startDate: startOfDay(addDays(date, -1)),
+    endDate: endOfDay(addDays(date, -1)),
   },
   {
     label: "This Week",
@@ -42,11 +44,6 @@ export const getDefaultRanges = (
     label: "Last Week",
     startDate: startOfWeek(addWeeks(date, -1), { locale }),
     endDate: endOfWeek(addWeeks(date, -1), { locale }),
-  },
-  {
-    label: "Last 7 Days",
-    startDate: addWeeks(date, -1),
-    endDate: date,
   },
   {
     label: "This Month",

@@ -6,7 +6,7 @@ import {
   Typography,
   alpha,
   useTheme,
-  Unstable_Grid2 as Grid2,
+  Grid,
 } from "@mui/material";
 import type { SelectChangeEvent, SvgIconProps } from "@mui/material";
 import { differenceInCalendarMonths } from "date-fns";
@@ -47,6 +47,8 @@ type SectionsProps = {
   labels?: Labels;
 
   hideActionButtons?: boolean;
+  hideSubmitButton?: boolean;
+  hideCloseButton?: boolean;
   hideDefaultRanges?: boolean;
   hideOutsideMonthDays?: boolean;
   RangeSeparatorIcons?: {
@@ -77,6 +79,8 @@ export const Sections = (props: SectionsProps) => {
 
     hideActionButtons = false,
     hideDefaultRanges = false,
+    hideCloseButton = false,
+    hideSubmitButton = false,
     hideOutsideMonthDays,
     RangeSeparatorIcons,
     onCloseCallback,
@@ -142,15 +146,14 @@ export const Sections = (props: SectionsProps) => {
   }, [selectedRangeObj, dateRange]);
 
   return (
-    <Grid2
+    <Grid
       container
       sx={{
         borderRadius: "16px",
-        backgroundColor: "#fff",
         overflow: "hidden",
       }}
     >
-      <Grid2
+      <Grid
         xs="auto"
         container
         direction={"column"}
@@ -163,27 +166,26 @@ export const Sections = (props: SectionsProps) => {
           ranges={ranges}
           setRange={handleClickDefinedRange}
         />
-      </Grid2>
+      </Grid>
 
       {/* Divider for Defined Ranges ( MD+ )*/}
-      <Grid2
+      <Grid
         xs="auto"
         display={{ xs: "none", md: hideDefaultRanges ? "none" : "block" }}
       >
         <Divider orientation="vertical" />
-      </Grid2>
+      </Grid>
 
-      <Grid2 xs container direction={"column"}>
+      <Grid container direction={"column"}>
         {/* Defined Ranges Selection ( MD- ) */}
-        <Grid2
+        <Grid
           display={{ xs: hideDefaultRanges ? "none" : "flex", md: "none" }}
           container
           height="48px"
           alignItems={"center"}
           px="16px"
-          sx={{ backgroundColor: alpha(theme.palette.grey[400], 0.1) }}
         >
-          <Grid2
+          <Grid
             xs={12}
             container
             justifyContent={"space-between"}
@@ -192,6 +194,7 @@ export const Sections = (props: SectionsProps) => {
             <Typography
               sx={{
                 fontSize: "14px",
+                paddingRight: "1em",
               }}
             >
               {labels?.predefinedRanges || "Quick Select"}
@@ -220,7 +223,6 @@ export const Sections = (props: SectionsProps) => {
                   root: {
                     sx: {
                       height: "30px",
-                      backgroundColor: "#fff",
                     },
                   },
                 }}
@@ -253,16 +255,16 @@ export const Sections = (props: SectionsProps) => {
                 })}
               </Select>
             </FormControl>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
 
         {/* Divider for Defined Ranges ( MD- )*/}
-        <Grid2 display={{ xs: "block", md: "none" }}>
+        <Grid display={{ xs: "block", md: "none" }}>
           <Divider />
-        </Grid2>
+        </Grid>
 
         {/* Dual Calender ( MD- ) */}
-        <Grid2 container display={{ xs: "flex", md: "none" }}>
+        <Grid container display={{ xs: "flex", md: "none" }}>
           <SingleCalender
             firstMonth={firstMonth}
             secondMonth={secondMonth}
@@ -272,10 +274,10 @@ export const Sections = (props: SectionsProps) => {
             hideOutsideMonthDays={hideOutsideMonthDays}
             locale={locale}
           />
-        </Grid2>
+        </Grid>
 
         {/* Dual Calender ( MD+ ) */}
-        <Grid2 flex={1} display={{ xs: "none", md: "flex" }} container>
+        <Grid flex={1} display={{ xs: "none", md: "flex" }} container>
           <DuelCalender
             firstMonth={firstMonth}
             secondMonth={secondMonth}
@@ -286,18 +288,18 @@ export const Sections = (props: SectionsProps) => {
             hideOutsideMonthDays={hideOutsideMonthDays}
             locale={locale}
           />
-        </Grid2>
+        </Grid>
 
         {/* Footer With Divider Section (ALL) */}
         {footerRequired ? (
           <>
             {/* Divider for Footer ( All )*/}
-            <Grid2 display={hideActionButtons ? "none" : "block"}>
+            <Grid display={hideActionButtons ? "none" : "block"}>
               <Divider />
-            </Grid2>
+            </Grid>
 
             {/* Footer Section (ALL) */}
-            <Grid2
+            <Grid
               display={hideActionButtons ? "none" : "flex"}
               xs="auto"
               container
@@ -322,13 +324,15 @@ export const Sections = (props: SectionsProps) => {
                 locale={locale}
                 labels={labels}
                 onCloseCallback={onCloseCallback}
+                hideCloseButton={hideCloseButton}
                 onSubmit={handlers.handleClickSubmit}
+                hideSubmitButton={hideSubmitButton}
                 RangeSeparatorIcons={RangeSeparatorIcons}
               />
-            </Grid2>
+            </Grid>
           </>
         ) : null}
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };

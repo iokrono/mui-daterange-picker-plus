@@ -8,7 +8,7 @@ import {
   ListItemText,
   alpha,
   useTheme,
-  Unstable_Grid2 as Grid2,
+  Grid,
 } from "@mui/material";
 import type { DateRange, DefinedRange } from "../types/utils";
 
@@ -36,15 +36,15 @@ export const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
 
   return (
     <>
-      <Grid2 xs="auto">
+      <Grid xs="auto">
         <Box
           height="54px"
           sx={{
-            backgroundColor: alpha(theme.palette.grey[400], 0.1),
+            backgroundColor: alpha(theme.palette.background.paper, 0.1),
           }}
         ></Box>
-      </Grid2>
-      <Grid2 xs>
+      </Grid>
+      <Grid>
         <List
           sx={{
             pt: "10px",
@@ -58,7 +58,7 @@ export const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
               sx={[
                 isSameRange(range, selectedRange)
                   ? {
-                      backgroundColor: alpha(theme.palette.grey[600], 0.1),
+                      backgroundColor: alpha(theme.palette.primary.contrastText, 0.1),
                     }
                   : {},
               ]}
@@ -82,13 +82,12 @@ export const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
                     sx: [
                       isSameRange(range, selectedRange)
                         ? {
-                            color: alpha(theme.palette.grey[800], 1),
+                            color: alpha(theme.palette.primary.dark, 1),
                           }
                         : {
-                            color: alpha(theme.palette.grey[600], 1),
+                            color: alpha(theme.palette.primary.light, 1),
                           },
                       {
-                        fontFamily: "Roboto",
                         fontSize: 13,
                         fontWeight: 400,
                       },
@@ -101,7 +100,7 @@ export const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
             </ListItem>
           ))}
         </List>
-      </Grid2>
+      </Grid>
     </>
   );
 };

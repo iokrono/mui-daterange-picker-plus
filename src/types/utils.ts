@@ -43,7 +43,9 @@ export type PickerProps = {
 
 export type ModalCustomProps = {
   onSubmit?: (dateRange: DateRange) => void;
+  hideSubmitButton: boolean;
   onCloseCallback?: () => void;
+  hideCloseButton: boolean;
   RangeSeparatorIcons?: RangeSeparatorIconsProps;
   hideActionButtons?: boolean;
 };
